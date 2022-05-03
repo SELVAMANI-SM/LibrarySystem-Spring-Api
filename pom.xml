@@ -16,7 +16,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<sonar.projectKey>LibrayManagementSystem</sonar.projectKey>
-		<sonar.organisation>SELVAMANI_SM</sonar.organisation>
+		<sonar.organization>SELVAMANI_SM</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
