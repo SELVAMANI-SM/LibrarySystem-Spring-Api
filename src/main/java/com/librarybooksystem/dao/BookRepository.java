@@ -34,7 +34,7 @@ void deleteByAuthorContaining(String author);
 void deleteByName(@Param("name")String name);
 @Transactional
 @Modifying
-@Query("delete from Book u where u.department=:department")
+@Query("delete from Book  u where u.department=:department")
 void deleteByDepartment(@Param("department") String department);
 
 //@Query("delete from Book u where u.department=:department")
@@ -43,7 +43,7 @@ void deleteByDepartment(@Param("department") String department);
 List<Book>findAll();
 Optional<Book>findById(Integer id);
 List<Book>findByDepartment(String department);
-List<Book>findByNameContaining(String name);
+
 
 //@Transactional
 //@Modifying
@@ -58,9 +58,13 @@ List<Book>findByNameContaining(String name);
 //List<Book> findByIds(@Param("id") Integer id);
 @Transactional
 @Modifying
-@Query("delete from Book u where u.author=:author")
+@Query("delete from Book  u where u.author=:author")
 void deleteByAuthor(String author);
-
+//@Transactional
+//@Modifying
+//@Query("select u from com.librarybooksystem.model u where u.id=:id")
+//List<Book> idBooksReturn(@Param("id")Integer id);
+//
 
 
 

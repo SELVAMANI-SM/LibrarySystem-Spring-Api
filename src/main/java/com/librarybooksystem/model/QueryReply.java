@@ -17,7 +17,7 @@ public class QueryReply {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name="user_id")
-	private String userId;
+	private Integer userId;
 	@Column(name="user_query")
 	private String userQuery;
 	@Column(name="reply")

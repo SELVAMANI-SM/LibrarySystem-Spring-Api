@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.librarybooksystem.exception.ValidationException;
+
 public class Login {
 		
-		public static int loginValidator(String email,String password,String type) throws Exception
+		public static int loginValidator(String email,String password,String type) throws Exception,ValidationException
 		{
 			
 		Connection connection;
@@ -33,7 +35,7 @@ public class Login {
 		}
 	    if(mail==null)
 		{
-	    	count=-1;
+	    	throw new ValidationException("REGISTER FIRST");
 		}
 	    else if(Password.equals(password))
 		{	
@@ -42,7 +44,7 @@ public class Login {
 		}
 		else
 		{
-			count=-2;
+			throw new ValidationException("INVALID CREDENTIALS");
 			
 		}
 		return count;

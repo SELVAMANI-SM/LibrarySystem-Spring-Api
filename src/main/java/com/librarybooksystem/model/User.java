@@ -27,6 +27,7 @@ public class User {
    private Integer id;
    @Column(name="user_type")
    private String userType;
+   private int fine;
    
 
 }

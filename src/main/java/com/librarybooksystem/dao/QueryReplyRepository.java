@@ -17,14 +17,16 @@ public interface QueryReplyRepository extends JpaRepository<QueryReply, Integer>
 @SuppressWarnings("unchecked")
 QueryReply save(QueryReply query);
 
-List<QueryReply> findAllByUserId(String userId);
+
 List<QueryReply> findAll();
 
 
 
 
-@Transactional
-@Modifying
-@Query("update QueryReply u set u.reply = :reply where u.userId=:userId")
-void queryReply(@Param("userId") String userId,@Param("reply") String reply);
+//@Transactional
+//@Modifying
+//@Query("update QueryReply u set u.reply = :reply where u.userId=:userId AND u.userQuery =: userQuery")
+//void queryReply(@Param("userId") Integer userId,@Param("reply") String reply,@Param("userQuery") String userQuery);
+
+List<QueryReply> findByUserId(Integer userId);
 }
