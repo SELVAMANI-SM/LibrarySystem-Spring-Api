@@ -4,34 +4,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.librarybooksystem.dto.Logins;
 import com.librarybooksystem.exception.ValidationException;
 
 public class Login {
 		
-		public static int loginValidator(String email,String password,String type) throws Exception,ValidationException
+		public static Logins loginValidator(String email,String password) throws Exception,ValidationException
 		{
 			
 		Connection connection;
 		PreparedStatement statement;
 		connection=ConnectionUtilDao.sqlConnection();
 		ResultSet rs = null;
-		String query = "SELECT email,PASSWORD,id,user_type FROM user_details WHERE email=? AND user_type=?";
+		String query = "SELECT email,PASSWORD,id,user_type FROM user_details WHERE email=?";
 		
 		statement = connection.prepareStatement(query);
 		statement.setString(1,email);
 	
-		statement.setString(2,type);
+
 		
 		rs = statement.executeQuery();
 		String mail = null;
 		String Password=null;
+		String types =null;
 		int id=0;
-		int count;
 		while(rs.next())
 		{
 		mail=rs.getString("email");
 		Password=rs.getString("password");
 		id=rs.getInt("id");
+		types=rs.getString("user_type");
 		}
 	    if(mail==null)
 		{
@@ -39,7 +41,9 @@ public class Login {
 		}
 	    else if(Password.equals(password))
 		{	
-			count=id;
+			Logins login = new Logins(id,types);
+			return login;
+		
 			
 		}
 		else
@@ -47,7 +51,7 @@ public class Login {
 			throw new ValidationException("INVALID CREDENTIALS");
 			
 		}
-		return count;
+		
 	}
 		
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.librarybooksystem.connection.Login;
 
 import com.librarybooksystem.dao.UserRepository;
+import com.librarybooksystem.dto.Logins;
 import com.librarybooksystem.dto.Message;
 import com.librarybooksystem.exception.ValidationException;
 import com.librarybooksystem.model.User;
@@ -102,14 +103,17 @@ public class UserController {
 	@PostMapping("user/login")
 	public ResponseEntity<?> findByEmailAndPassword(@RequestBody User user) throws Exception,ValidationException
 	{
-		int count=0;
+	
 		String email=user.getEmail();
 		String password=user.getPassword();
-		String type=user.getUserType();
+		//String type=user.getUserType();
+		Logins login=null;
 		try
 		{
-		count=Login.loginValidator(email,password,type);
-		return new ResponseEntity<Integer>(count,HttpStatus.OK);
+		login=Login.loginValidator(email,password);
+		
+		
+		return new ResponseEntity<>(login,HttpStatus.OK);
 		}
 		catch(ValidationException e) {
 			Message message = new Message(e.getMessage());
